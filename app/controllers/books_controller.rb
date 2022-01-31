@@ -25,6 +25,7 @@ class BooksController < ApplicationController
 
     respond_to do |format|
       if @book.save
+      #if true
         format.html { redirect_to book_url(@book), notice: "Book was successfully created." }
         format.json { render :show, status: :created, location: @book }
       else
@@ -38,6 +39,7 @@ class BooksController < ApplicationController
   def update
     respond_to do |format|
       if @book.update(book_params)
+      #if true
         format.html { redirect_to book_url(@book), notice: "Book was successfully updated." }
         format.json { render :show, status: :ok, location: @book }
       else
