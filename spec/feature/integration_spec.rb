@@ -7,6 +7,7 @@ RSpec.describe 'Creating a book', type: :feature do
     visit new_book_path
     fill_in 'Title', with: 'harry potter'
     fill_in 'Author', with: 'J.K. Rowling'
+    fill_in 'Price', with: '5.00'
     click_on 'Create Book'
     visit books_path
     expect(page).to have_content('harry potter')
@@ -24,6 +25,7 @@ RSpec.describe 'Creating a book', type: :feature do
     visit new_book_path
     fill_in 'Title', with: 'harry potter'
     fill_in 'Author', with: 'J.K. Rowling'
+    fill_in 'Price', with: '5.00'
     click_on 'Create Book'
     expect(page).to have_content('J.K. Rowling')
   end
@@ -38,6 +40,8 @@ RSpec.describe 'Creating a book', type: :feature do
   #integration tests for price
   scenario 'valid inputs for price' do
     visit new_book_path
+    fill_in 'Title', with: 'harry potter'
+    fill_in 'Author', with: 'J.K. Rowling'
     fill_in 'Price', with: 5.00
     click_on 'Create Book'
     expect(page).to have_content(5.00)
