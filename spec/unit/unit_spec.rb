@@ -14,8 +14,12 @@ RSpec.describe Book, type: :model do
     subject.title = nil
     expect(subject).not_to be_valid
   end
-end
 
+  it 'is valid with change valid attributes - title' do
+    subject.title = 'book thief'
+    expect(subject).to be_valid
+  end
+end
 
 RSpec.describe Book, type: :model do
   subject do
@@ -30,6 +34,17 @@ RSpec.describe Book, type: :model do
     subject.author = nil
     expect(subject).not_to be_valid
   end
+
+  it 'is not valid without title nor author' do
+    subject.title = nil
+    subject.author = nil
+    expect(subject).not_to be_valid
+  end
+
+  it 'is valid with change to valid attributes - author' do
+    subject.author = 'markus zusak'
+    expect(subject).to be_valid
+  end
 end
 
 # unit test for price
@@ -39,6 +54,11 @@ RSpec.describe Book, type: :model do
   end
 
   it 'is valid with valid attributes for price' do
+    expect(subject).to be_valid
+  end
+
+  it 'is valid with change to valid attributes for price' do
+    price = 4.99
     expect(subject).to be_valid
   end
 
