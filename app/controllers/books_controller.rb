@@ -5,7 +5,7 @@ class BooksController < ApplicationController
   def index
     @books = Book.all
     # to have ascending 
-    # @books = Book.order('position ASC')
+    #books = Book.order('position ASC')
   end
 
   # GET /books/1 or /books/1.json
@@ -20,6 +20,11 @@ class BooksController < ApplicationController
 
   # GET /books/1/edit
   def edit
+    @book = Book.find(params[:id])
+  end
+
+  def delete
+    @book = Book.find(params[:id])
   end
 
   # POST /books or /books.json
@@ -30,7 +35,7 @@ class BooksController < ApplicationController
     respond_to do |format|
       if @book.save
       #if true
-        format.html { redirect_to book_url(@book), notice: "Book was successfully created." }
+        format.html { redirect_to books_path, notice: "Book '#{@book.title}' was successfully created." }
         format.json { render :show, status: :created, location: @book }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -44,7 +49,8 @@ class BooksController < ApplicationController
     respond_to do |format|
       if @book.update(book_params)
       #if true
-        format.html { redirect_to book_url(@book), notice: "Book was successfully updated." }
+        # used to be book_url(@book)
+        format.html { redirect_to books_path, notice: "Book '#{@book.title}' was successfully updated." }
         format.json { render :show, status: :ok, location: @book }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -53,15 +59,13 @@ class BooksController < ApplicationController
     end
   end
 
-  def delete
-  end
-
   # DELETE /books/1 or /books/1.json
   def destroy
+    title = @book.title
     @book.destroy
 
     respond_to do |format|
-      format.html { redirect_to books_url, notice: "Book was successfully destroyed." }
+      format.html { redirect_to books_path, notice: "Book '#{title}' was successfully deleted." }
       format.json { head :no_content }
     end
   end
