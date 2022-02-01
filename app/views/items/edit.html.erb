@@ -1,6 +1,33 @@
 <h1>Editing Book</h1>
 
-<%= render 'form', item: @item %>
+<%= form_for(@item, :method => 'patch') do |form| %>
+    <% if @item.errors.any? %>
+        <div id="error_explanation">
+        <h2><%= pluralize(@item.errors.count, "error") %> prohibited this book from being saved:</h2>
+
+        <ul>
+            <% @item.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+            <% end %>
+        </ul>
+        </div>
+    <% end %>
+
+    <div class="field">
+        <%= form.label :title %>
+        <%= form.text_field :title %>
+    </div>
+
+    <div class="field">
+        <%= form.label :author %>
+        <%= form.text_field :author %>
+    </div>
+
+    <div class ="form-buttons">
+        <%= form.submit("Update Book") %>
+    </div>
+    <% end %>
+<br>
 
 <%= link_to 'Show', @item %> |
 <%= link_to 'Back', items_path %>
