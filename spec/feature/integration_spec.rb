@@ -37,13 +37,49 @@ RSpec.describe 'Creating a book', type: :feature do
   end
 
   #integration tests for price
-  scenario 'valid inputs for price' do
+  scenario 'valid inputs for price with regular price' do
     visit new_item_path
     fill_in 'Title', with: 'harry potter'
     fill_in 'Author', with: 'J.K. Rowling'
     fill_in 'Price', with: 5.50
     click_on 'Create Book'
-    expect(page).to have_content(5.00)
+    expect(page).to have_content(5.50)
+  end
+
+  scenario 'valid inputs for price - free' do
+    visit new_item_path
+    fill_in 'Title', with: 'harry potter'
+    fill_in 'Author', with: 'J.K. Rowling'
+    fill_in 'Price', with: 0
+    click_on 'Create Book'
+    expect(page).to have_content(0)
+  end
+
+  scenario 'invalid inputs for price' do
+    visit new_item_path
+    fill_in 'Title', with: 'harry potter'
+    fill_in 'Author', with: 'J.K. Rowling'
+    fill_in 'Price', with: ''
+    click_on 'Create Book'
+    expect(page).to have_content("Price can't be blank")
+  end
+
+  scenario 'invalid inputs with negative price' do
+    visit new_item_path
+    fill_in 'Title', with: 'harry potter'
+    fill_in 'Author', with: 'J.K. Rowling'
+    fill_in 'Price', with: -5.50
+    click_on 'Create Book'
+    expect(page).to have_content("Price must be greater than or equal to 0")
+  end
+
+  scenario 'invalid inputs with negative price' do
+    visit new_item_path
+    fill_in 'Title', with: 'harry potter'
+    fill_in 'Author', with: 'J.K. Rowling'
+    fill_in 'Price', with: -5.50
+    click_on 'Create Book'
+    expect(page).to have_content("Price must be greater than or equal to 0")
   end
 
   scenario 'invalid inputs for price' do
