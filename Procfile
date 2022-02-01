@@ -1,1 +1,1 @@
-release: rails db:drop db:setup db:migrate
+release: rails db:drop & db:setup & db:migrate
