@@ -8,7 +8,7 @@
       <th>Title</th>
       <th>Author</th>
       <th>Price</th>
-      <th>Date</th>
+      <th>Published Date</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -19,6 +19,7 @@
         <td><%= item.title %></td>
         <td><%= item.author %></td>
         <td><%= item.price %></td>
+        <td><%= item.date %></td>
         <td><%= link_to 'Show', item %></td>
         <td><%= link_to 'Edit', edit_item_path(item) %></td>
         <td><%= link_to 'Delete', delete_item_path(item) %></td>

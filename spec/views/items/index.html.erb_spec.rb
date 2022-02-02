@@ -6,12 +6,14 @@ RSpec.describe "items/index", type: :view do
       Item.create!(
         title: "Title",
         author: "Author",
-        price: "9.99"
+        price: "9.99",
+        date: "2022-02-22"
       ),
       Item.create!(
         title: "Title",
         author: "Author",
-        price: "9.99"
+        price: "9.99",
+        date: "2022-02-22"
       )
     ])
   end

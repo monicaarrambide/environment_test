@@ -5,7 +5,8 @@ RSpec.describe "items/show", type: :view do
     @item = assign(:item, Item.create!(
       title: "Title",
       author: "Author",
-      price: "9.99"
+      price: "9.99",
+      date: "2022-02-22"
     ))
   end
 

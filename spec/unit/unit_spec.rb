@@ -3,27 +3,32 @@ require 'rails_helper'
 
 RSpec.describe Item, :type => :model do
   it "has a value" do
-    item = Item.new(title: "harry potter", author: "j.k. rowling", price: 5.50)
+    item = Item.new(title: "harry potter", author: "j.k. rowling", price: 5.50, date: '2022-02-02')
     expect(item).to be_valid
   end
 
   it "is not valid without a title" do
-    item = Item.new(title: nil, author: "j.k. rowling", price: 5.50)
+    item = Item.new(title: nil, author: "j.k. rowling", price: 5.50, date: '2022-02-02')
     expect(item).to_not be_valid
   end
 
   it "is not valid without an author" do 
-    item = Item.new(title: "harry potter", author: nil, price: 5.50)
+    item = Item.new(title: "harry potter", author: nil, price: 5.50, date: '2022-02-02')
     expect(item).to_not be_valid
   end
 
   it "is not valid without a price" do 
-    item = Item.new(title: "harry potter", author: "j.k. rowling", price: nil)
+    item = Item.new(title: "harry potter", author: "j.k. rowling", price: nil, date: '2022-02-02')
     expect(item).to_not be_valid
   end
 
   it "is not valid with negative price" do 
-    item = Item.new(title: "harry potter", author: "j.k. rowling", price: -5.50)
+    item = Item.new(title: "harry potter", author: "j.k. rowling", price: -5.50, date: '2022-02-02')
+    expect(item).to_not be_valid
+  end
+
+  it "is not valid without a date" do
+    item = Item.new(title: "harry potter", author: "j.k. rowling", price: 5.50, date: nil)
     expect(item).to_not be_valid
   end
 end

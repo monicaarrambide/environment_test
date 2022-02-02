@@ -28,6 +28,11 @@
         <%= form.text_field :price %>
     </div>
 
+    <div class="field">
+        <%= form.label :date %>
+        <%= form.date_select :date, :order => [:day, :month, :year] %>
+    </div>
+
     <div class ="form-buttons">
         <%= form.submit("Update Book") %>
     </div>
