@@ -33,7 +33,7 @@ class ItemsController < ApplicationController
       if @item.save
       #if true
         #format.html { redirect_to item_url(@item), notice: "Item was successfully created." }
-        format.html { redirect_to items_path, notice: "Book '#{@item.title} was successfully created." }
+        format.html { redirect_to items_path, notice: "Book '#{@item.title}' was successfully created." }
         format.json { render :show, status: :created, location: @item }
       else
         format.html { render :new, status: :unprocessable_entity }
