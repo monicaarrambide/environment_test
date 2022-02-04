@@ -1,0 +1,27 @@
+<%= form_with(model: user_item) do |form| %>
+  <% if user_item.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(user_item.errors.count, "error") %> prohibited this user_item from being saved:</h2>
+
+      <ul>
+        <% user_item.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.select :user_id, User.order(:username).map { |user| [user.username, user.id] }, include_blank: true, id: "id_of_the_user_id_select_box" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :item_id %>
+    <%= form.select :item_id, Item.order(:title).map { |item| [item.title, item.id] }, include_blank: true, id: "id_of_the_item_id_select_box" %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
